@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmyeleaf.com"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+<body>
+
+<h3>Student Registration Form</h3>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+
+    First Name : <label>
+    <input type="text" th:field="*{firstName}" />
+</label>
+
+    <br><br>
+
+    Last Name : <label>
+    <input type="text" th:field="*{lastName}" />
+</label>
+
+    <br><br>
+
+    <label>
+        Country :
+        <select th:field="*{country}">
+<!--            <option th:value="India">India</option>-->
+<!--            <option th:value="Russia">Russia</option>-->
+<!--            <option th:value="Germany">Germany</option>-->
+<!--            <option th:value="Brazil">Brazil</option>-->
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+
+        </select>
+    </label>
+
+    <br><br>
+
+    Favorite Programming Language :
+
+    <label>
+        <input type="radio"
+               th:field="*{favoriteLanguage}"
+               th:each="tempLang : ${favoriteLanguage}" th:value="${tempLang}" th:text="${tempLang}"/>
+    </label>
+    <!--    <label>-->
+<!--        <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">-->
+<!--    </label>Java</input><label>-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">-->
+<!--    </label>Python</input>-->
+
+    <br><br>
+
+    Favorite Operating Systems :
+
+    <input type="checkbox" th:field="*{favoriteOperatingSystem}" th:each="tempOS : ${favoriteOperatingSystem}" th:value="${tempOS}" th:text="${tempOS}"/>
+
+<!--    <input type="checkbox" th:field="*{favoriteOperatingSystem}" th:value="Linux" >Linux</input>-->
+<!--    <input type="checkbox" th:field="*{favoriteOperatingSystem}" th:value="macOS" >macOS</input>-->
+<!--    <input type="checkbox" th:field="*{favoriteOperatingSystem}" th:value="'Microsoft Windows'" >Microsoft Windows</input>-->
+
+    <br><br>
+
+
+    <input type="submit" value="Submit"/>
+
+</form>
+
+
+</body>
+</html>
